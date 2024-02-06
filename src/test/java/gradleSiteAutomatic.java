@@ -23,7 +23,7 @@ public class gradleSiteAutomatic {
         $("#userNumber").sendKeys("9000000000");
         // Запоняем блок формы dateOfBirth
         $("#dateOfBirth .react-datepicker-wrapper").click();
-        sleep(2000);
+        sleep(3000);
 
 
     }
