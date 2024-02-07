@@ -1,6 +1,9 @@
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -23,6 +26,29 @@ public class gradleSiteAutomatic {
         $("#userNumber").sendKeys("9000000000");
         // Запоняем блок формы dateOfBirth
         $("#dateOfBirth .react-datepicker-wrapper").click();
+        $(".month--dropdown, [value=\"6\"]").click();
+        $(".year-dropdown, [value=\"1988\"]").click();
+        $("[aria-label=\"Choose Sunday, July 24th, 1988\"]").click();
+        // Заполняем блок Subjects
+        $("[id=\"subjectsContainer\"]").click();
+        $("[id=\"subjectsInput\"]").setValue("E");
+        $("[id=\"subjectsContainer\"]").$$(".subjects-auto-complete__menu").first().click(); // Вопрос по выбору позиции в выпадающем списке
+        // Заполняем блок Hobbies
+        $("[id=\"hobbiesWrapper\"]").click(); // Разобраться с выбором значени чек-бокса
+        // Выполняем прикрепление файла
+        File file1 = new File("src/test/resources/readme.txt");
+        $("[id=\"uploadPicture\"]").uploadFile(file1);
+        $("[id=\"uploadPicture\"]").uploadFromClasspath("readme.txt");
+        // Заполняем поле Current Address
+        $("[id=\"currentAddress\"]").setValue("TEST");
+        // Заполняем поля State and City
+        $("[id=\"state\"]").click();
+       // $$("[id=\"state\"]").shouldBe(CollectionCondition.texts("NCR"));
+
+
+
+
+
         sleep(3000);
 
 
